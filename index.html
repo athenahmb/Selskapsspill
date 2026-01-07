@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Party Games 🎉</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1 id="title">Party Games 🎉</h1>
+  <div class="lang-switch">
+    <button onclick="setLanguage('en')">English 🇬🇧</button>
+    <button onclick="setLanguage('no')">Norsk 🇳🇴</button>
+  </div>
+</header>
+
+<nav>
+  <button onclick="showGame('charades')">Charades 🎭</button>
+  <button onclick="showGame('spy')">Spy 🕵️</button>
+  <button onclick="showGame('imposter')">Imposter Drawing 🎨</button>
+  <button onclick="showGame('mrwhite')">Mr White 🕵️‍♂️</button>
+  <button onclick="showGame('questionspy')">Question Spy ❓</button>
+  <button onclick="showGame('psychologist')">The Psychologist 🧠</button>
+</nav>
+
+<main>
+  <!-- CHARADES -->
+  <section id="charades" class="game hidden">
+    <h2 id="charadesTitle">Charades 🎭</h2>
+    <p id="charadesWord">Click new word!</p>
+    <button id="charadesBtn" onclick="newCharadesWord()">New word ✨</button>
+  </section>
+
+  <!-- SPY -->
+  <section id="spy" class="game hidden">
+    <h2 id="spyTitle">Spy 🕵️</h2>
+    <label>Players: <input type="number" id="spyPlayers" min="3" value="3"></label>
+    <p id="spyInfo">Player info</p>
+    <p id="spyWord">Tap to reveal</p>
+    <button id="spyStartBtn">Start game</button>
+    <button id="spyNextBtn">Next player</button>
+  </section>
+
+  <!-- IMPOSTER -->
+  <section id="imposter" class="game hidden">
+    <h2 id="impTitle">Imposter Drawing 🎨</h2>
+    <label>Players: <input type="number" id="impPlayers" min="3" value="3"></label>
+    <p id="impInfo">Player info</p>
+    <p id="impWord">Tap to reveal</p>
+    <button id="impStartBtn">Start game</button>
+    <button id="impNextBtn">Next player</button>
+  </section>
+
+  <!-- MR WHITE -->
+  <section id="mrwhite" class="game hidden">
+    <h2 id="mrwhiteTitle">Mr White 🕵️‍♂️</h2>
+    <label>Players: <input type="number" id="mwPlayers" min="3" value="3"></label>
+    <p id="mwInfo">Player info</p>
+    <p id="mwWord">Tap to reveal</p>
+    <button id="mwStartBtn">Start game</button>
+    <button id="mwNextBtn">Next player</button>
+  </section>
+
+  <!-- QUESTION SPY -->
+  <section id="questionspy" class="game hidden">
+    <h2 id="qsTitle">Question Spy ❓</h2>
+    <label>Players: <input type="number" id="qsPlayers" min="3" value="3"></label>
+    <p id="qsInfo">Player info</p>
+    <p id="qsWord">Tap to reveal</p>
+    <button id="qsStartBtn">Start game</button>
+    <button id="qsNextBtn">Next player</button>
+  </section>
+
+  <!-- PSYCHOLOGIST -->
+  <section id="psychologist" class="game hidden">
+    <h2 id="psychTitle">The Psychologist 🧠</h2>
+    <label>Players: <input type="number" id="psychPlayers" min="3" value="3"></label>
+    <p id="psychInfo">Player info</p>
+    <p id="psychRule">Tap to reveal</p>
+    <button id="psychStartBtn">Start game</button>
+    <button id="psychNextBtn">Next player</button>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
