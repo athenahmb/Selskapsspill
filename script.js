@@ -1,28 +1,26 @@
-// ---------- LANGUAGE ----------
+// ---------------- LANGUAGE ----------------
 let currentLanguage = "en";
 
 const text = {
-  en: {
-    title:"Party Games 🎉", charades:"Charades 🎭", spy:"Spy Game 🕵️",
-    imposter:"Imposter Drawing 🎨", mrwhiteTitle:"Mr White 🕵️‍♂️",
-    qsTitle:"Question Spy ❓", psychTitle:"The Psychologist 🧠",
-    newWord:"New word ✨", start:"Start game", tap:"Tap to reveal 👀",
-    discuss:"Game ready! Discuss 😈", spyReveal:"You are the SPY 😳",
-    impReveal:"You are the IMPOSTER 😈", minPlayers:"At least 3 players babes 💖"
-  },
-  no: {
-    title:"Selskapsspill 🎉", charades:"Charades 🎭", spy:"Spion 🕵️",
-    imposter:"Impostor kunstner 🎨", mrwhiteTitle:"Mr White 🕵️‍♂️",
-    qsTitle:"Spørsmål Spion ❓", psychTitle:"Psykologen 🧠",
-    newWord:"Nytt ord ✨", start:"Start spill", tap:"Trykk for å se 👀",
-    discuss:"Spillet er klart! Diskuter 😈", spyReveal:"Du er SPIONEN 😳",
-    impReveal:"Du er IMPOSTOREN 😈", minPlayers:"Minst 3 spillere 💕"
-  }
+  en: {title:"Party Games 🎉", charades:"Charades 🎭", spy:"Spy Game 🕵️",
+       imposter:"Imposter Drawing 🎨", mrwhiteTitle:"Mr White 🕵️‍♂️",
+       qsTitle:"Question Spy ❓", psychTitle:"The Psychologist 🧠",
+       newWord:"New word ✨", start:"Start game", tap:"Tap to reveal 👀",
+       discuss:"Game ready! Discuss 😈", spyReveal:"You are the SPY 😳",
+       impReveal:"You are the IMPOSTER 😈", minPlayers:"At least 3 players babes 💖"},
+
+  no: {title:"Selskapsspill 🎉", charades:"Charades 🎭", spy:"Spion 🕵️",
+       imposter:"Impostor kunstner 🎨", mrwhiteTitle:"Mr White 🕵️‍♂️",
+       qsTitle:"Spørsmål Spion ❓", psychTitle:"Psykologen 🧠",
+       newWord:"Nytt ord ✨", start:"Start spill", tap:"Trykk for å se 👀",
+       discuss:"Spillet er klart! Diskuter 😈", spyReveal:"Du er SPIONEN 😳",
+       impReveal:"Du er IMPOSTOREN 😈", minPlayers:"Minst 3 spillere 💕"}
 };
 
 function setLanguage(lang){
   currentLanguage=lang; 
   localStorage.setItem("lang",lang);
+
   document.getElementById("title").textContent=text[lang].title;
   document.getElementById("charadesTitle").textContent=text[lang].charades;
   document.getElementById("spyTitle").textContent=text[lang].spy;
@@ -30,6 +28,7 @@ function setLanguage(lang){
   document.getElementById("mrwhiteTitle").textContent=text[lang].mrwhiteTitle;
   document.getElementById("qsTitle").textContent=text[lang].qsTitle;
   document.getElementById("psychTitle").textContent=text[lang].psychTitle;
+
   document.getElementById("charadesBtn").textContent=text[lang].newWord;
   document.getElementById("spyStartBtn").textContent=text[lang].start;
   document.getElementById("impStartBtn").textContent=text[lang].start;
@@ -37,25 +36,28 @@ function setLanguage(lang){
   document.getElementById("qsStartBtn").textContent=text[lang].start;
   document.getElementById("psychStartBtn").textContent=text[lang].start;
 }
-const savedLang=localStorage.getItem("lang");
-if(savedLang)setLanguage(savedLang); else setLanguage("en");
 
+const savedLang = localStorage.getItem("lang");
+if(savedLang) setLanguage(savedLang);
+else setLanguage("en");
+
+// ---------------- GENERAL ----------------
 function showGame(id){
-  document.querySelectorAll(".game").forEach(g=>g.classList.add("hidden")); 
+  document.querySelectorAll(".game").forEach(g => g.classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
 }
 
-// ---------- CHARADES ----------
+// ---------------- CHARADES ----------------
 const charadesWords = {
-  en:["Brushing teeth","Dancing","Harry Potter","Swimming","Cat stuck in a tree"],
-  no:["Pusse tenner","Danse","Harry Potter","Svømming","Katt i et tre"]
+  en:["Brushing teeth","Dancing","Swimming","Cat stuck in a tree"],
+  no:["Pusse tenner","Danse","Svømming","Katt i et tre"]
 };
 function newCharadesWord(){
   const word = charadesWords[currentLanguage][Math.floor(Math.random()*charadesWords[currentLanguage].length)];
   document.getElementById("charadesWord").textContent = word;
 }
 
-// ---------- SPY ----------
+// ---------------- SPY ----------------
 const spyLocations = {
   en:["Beach 🏖️","School 🏫","Airport ✈️","Hospital 🏥","Restaurant 🍝"],
   no:["Strand 🏖️","Skole 🏫","Flyplass ✈️","Sykehus 🏥","Restaurant 🍝"]
@@ -65,7 +67,7 @@ document.getElementById("spyStartBtn").addEventListener("click", startSpy);
 document.getElementById("spyNextBtn").addEventListener("click", nextSpyPlayer);
 function startSpy(){
   const players=Number(document.getElementById("spyPlayers").value);
-  if(!players||players<3){alert(text[currentLanguage].minPlayers);return;}
+  if(!players||players<3){alert(text[currentLanguage].minPlayers); return;}
   spyPlayer=0; spyImposter=Math.floor(Math.random()*players);
   spyWord=spyLocations[currentLanguage][Math.floor(Math.random()*spyLocations[currentLanguage].length)];
   document.getElementById("spyInfo").textContent=`Player 1`;
@@ -81,10 +83,10 @@ function nextSpyPlayer(){
   spyPlayer++;
 }
 
-// ---------- IMPOSTER ----------
+// ---------------- IMPOSTER ----------------
 const drawingPrompts = {
-  en:["Cat 🐱","House 🏠","Flower 🌸","Tree 🌳","Sunglasses 😎"],
-  no:["Katt 🐱","Hus 🏠","Blomst 🌸","Tre 🌳","Solbriller 😎"]
+  en:["Cat 🐱","House 🏠","Flower 🌸","Tree 🌳"],
+  no:["Katt 🐱","Hus 🏠","Blomst 🌸","Tre 🌳"]
 };
 let impPlayer=0, impImposter=0, impWord="";
 document.getElementById("impStartBtn").addEventListener("click", startImposter);
@@ -107,7 +109,7 @@ function nextImpPlayer(){
   impPlayer++;
 }
 
-// ---------- MR WHITE ----------
+// ---------------- MR WHITE ----------------
 const mwWords = {
   en:[["Cat 🐱","Cats 🐈"],["House 🏠","Hut 🛖"]],
   no:[["Katt 🐱","Katter 🐈"],["Hus 🏠","Hytte 🛖"]]
@@ -134,9 +136,9 @@ function nextMwPlayer(){
   mwPlayer++;
 }
 
-// ---------- QUESTION SPY ----------
+// ---------------- QUESTION SPY ----------------
 const qsPairs = {
-  en:[["What's something totally overrated?","What's something totally underrated?"],["Least favorite food?","Most favorite food?"]],
+  en:[["What's totally overrated?","What's totally underrated?"],["Least favorite food?","Most favorite food?"]],
   no:[["Hva er helt overvurdert?","Hva er helt undervurdert?"],["Mest mislikte mat?","Favorittmat?"]]
 };
 let qsPlayer=0, qsOddPlayer=0, qsWord="", qsOddWord="";
@@ -161,18 +163,10 @@ function nextQsPlayer(){
   qsPlayer++;
 }
 
-// ---------- THE PSYCHOLOGIST ----------
+// ---------------- THE PSYCHOLOGIST ----------------
 const psychRules = {
-  en:[
-    "You all cross your legs when you tell a lie - and uncross them when you are telling the truth",
-    "Each answer begins with the next letter in the alphabet",
-    "Everyone thinks they are the person to their right"
-  ],
-  no:[
-    "Dere krysser beina når dere lyver - og retter dem når dere snakker sant",
-    "Hvert svar begynner med neste bokstav i alfabetet",
-    "Alle tror de er personen til høyre for seg"
-  ]
+  en:["Cross legs when lying","Each answer begins with next letter","Everyone thinks they are the person to their right"],
+  no:["Kryss beina når du lyver","Hvert svar begynner med neste bokstav","Alle tror de er personen til høyre"]
 };
 let psychPlayer=0, psychOddPlayer=0, psychRule="";
 document.getElementById("psychStartBtn").addEventListener("click", startPsychologist);
